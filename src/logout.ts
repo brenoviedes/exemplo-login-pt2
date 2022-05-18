@@ -11,4 +11,4 @@ auth
   })
   .catch((error) => console.log(error))
 
-export {}
+export { }

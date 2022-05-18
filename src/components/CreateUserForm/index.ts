@@ -1,7 +1,7 @@
-import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { firebaseApp } from '../../config/firebase'
 
-import './style.css'
+import './styles.css'
 
 const $ = document.querySelector.bind(document)
 
@@ -14,9 +14,9 @@ const onSubmitCreateuserForm = (event: Event) => {
     const auth = getAuth(firebaseApp)
 
     createUserWithEmailAndPassword(auth, email, password)
-        .then( (_) => {
+        .then((_) => {
             const loginLink = <HTMLAnchorElement>document.createElement('a')
-            loginLink.id = 'login-link'
+            loginLink.id = 'redirect-link'
             loginLink.innerText = 'Clique aqui para fazer o login'
             loginLink.href = 'login.html'
 
@@ -40,13 +40,13 @@ const onSubmitCreateuserForm = (event: Event) => {
 
 const renderCreateUserForm = (container: HTMLElement) => {
     const htmlContent = `
-        <form id="create-user-form">
-            <div class="form-panel">
+        <form>
+            <div>
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" placeholder="E-mail" rquired>
             </div>
 
-            <div class="form-panel">
+            <div>
                 <label for="password">Senha:</label>
                 <input type="password" id="password" placeholder="Senha" rquired>
             </div>
@@ -56,7 +56,7 @@ const renderCreateUserForm = (container: HTMLElement) => {
     `
 
     container.innerHTML = htmlContent
-    const createUserForm = <HTMLFormElement>$('#create-user-form')
+    const createUserForm = <HTMLFormElement>$('form')
     createUserForm.onsubmit = onSubmitCreateuserForm
 }
 
